@@ -1,0 +1,81 @@
+let educationCount = 1;
+let experienceCount = 1;
+
+function addEducation() {
+    educationCount++;
+    const educationSection = document.getElementById('education-section');
+    const newEducation = document.createElement('div');
+    newEducation.className = 'input-group';
+    newEducation.innerHTML = `
+        <label for="education-${educationCount}">Instituição e Curso</label>
+        <input type="text" id="education-${educationCount}" name="education[]">
+    `;
+    educationSection.appendChild(newEducation);
+}
+
+function addExperience() {
+    experienceCount++;
+    const experienceSection = document.getElementById('experience-section');
+    const newExperience = document.createElement('div');
+    newExperience.className = 'input-group';
+    newExperience.innerHTML = `
+        <label for="experience-${experienceCount}">Empresa e Cargo</label>
+        <input type="text" id="experience-${experienceCount}" name="experience[]">
+        <label for="experience-desc-${experienceCount}">Descrição das Atividades</label>
+        <textarea id="experience-desc-${experienceCount}" name="experience-desc[]"></textarea>
+    `;
+    experienceSection.appendChild(newExperience);
+}
+
+async function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Informações Pessoais
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const sex = document.getElementById('sex').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+
+    doc.setFontSize(16);
+    doc.text('Currículo', 15, 10);
+    doc.setFontSize(12);
+    doc.text(`Nome: ${name}`, 10, 20);
+    doc.text(`Idade: ${age}`, 10, 30);
+    doc.text(`Sexo: ${sex}`, 10, 40);
+    doc.text(`Telefone: ${phone}`, 10, 50);
+    doc.text(`Email: ${email}`, 10, 60);
+    doc.text(`Endereço: ${address}`, 10, 70);
+
+    // Formação
+    doc.text('Formação', 15, 80);
+    let educationY = 90;
+    const educations = document.getElementsByName('education[]');
+    educations.forEach((education, index) => {
+        if (education.value.trim() !== '') {
+            doc.text(`${index + 1}. ${education.value}`, 15, educationY);
+            educationY += 15;
+        }
+    });
+
+    // Experiências Profissionais
+    doc.text('Experiências Profissionais', 15, educationY + 10);
+    let experienceY = educationY + 20;
+    const experiences = document.getElementsByName('experience[]');
+    const experiencesDesc = document.getElementsByName('experience-desc[]');
+    experiences.forEach((experience, index) => {
+        if (experience.value.trim() !== '') {
+            doc.text(`${index + 1}. Empresa e Cargo ${experience.value}`, 12, experienceY);
+            experienceY += 10;
+            if (experiencesDesc[index].value.trim() !== '') {
+                doc.text(`Descrição ${experiencesDesc[index].value}`, 12, experienceY);
+                experienceY += 10;
+            }
+        }
+    });
+
+    // Salva o PDF
+    doc.save('curriculo.pdf');
+}
