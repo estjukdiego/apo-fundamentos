@@ -8,70 +8,81 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script defer src="script.js"></script>
+    <style>
+        .breadcrumb-item.active {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page">Currículo Fast</li>
+        <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item active" aria-current="page">CURRÍCULO FAST</li>
         </ol>
     </nav>
 
-    <div class="section">
-        <h2>Informações Pessoais</h2>
-        <div class="input-group">
-            <label for="name">Nome</label>
-            <input type="text" id="name" name="name">
-        </div>
-        <div class="input-group">
-            <label for="age">Idade</label>
-            <input type="text" id="age" name="age">
-        </div>
-        <div class="input-group">
-            <label for="sex">Sexo</label>
-            <input type="text" id="sex" name="sex">
-        </div>
-        <div class="input-group">
-            <label for="phone">Telefone</label>
-            <input type="tel" id="phone" name="phone">
-        </div>
-        <div class="input-group">
-            <label for="email">E-mail</label>
-            <input type="text" id="email" name="email">
-        </div>
-        <div class="input-group">
-            <label for="address">Endereço</label>
-            <input type="text" id="address" name="address">
-        </div>
-        <div class="form-group">
-            <label for="foto">Foto</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Formação</h2>
-        <div id="education-section">
-            <div class="input-group">
-                <label for="education-1">Instituição e Curso</label>
-                <input type="text" id="education-1" name="education[]">
+    <div class="container mt-4">
+        <div class="section">
+            <h2>Informações Pessoais</h2>
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="age">Idade</label>
+                <input type="text" class="form-control" id="age" name="age">
+            </div>
+            <div class="form-group">
+                <label for="sex">Sexo</label>
+                <input type="text" class="form-control" id="sex" name="sex">
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" class="form-control" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="address">Endereço</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="form-group">
+                <label for="photo">Foto</label>
+                <input type="file" class="form-control-file" id="photo">
             </div>
         </div>
-        <button class="add-button" onclick="addEducation()">Adicionar Formação</button>
-    </div>
 
-    <div class="section">
-        <h2>Experiências Profissionais</h2>
-        <div id="experience-section">
-            <div class="input-group">
-                <label for="experience-1">Empresa e Cargo</label>
-                <input type="text" id="experience-1" name="experience[]">
-                <label for="experience-desc-1">Descrição das Atividades</label>
-                <textarea id="experience-desc-1" name="experience-desc[]"></textarea>
+        <div class="section">
+            <h2>Formação</h2>
+            <div id="education-section">
+                <div class="form-group">
+                    <label for="education-1">Instituição e Curso</label>
+                    <input type="text" class="form-control" id="education-1" name="education[]">
+                </div>
             </div>
+            <button class="btn btn-primary add-button" onclick="addEducation()">Adicionar Formação</button>
         </div>
-        <button class="add-button" onclick="addExperience()">Adicionar Experiência</button>
-    </div>
 
-    <button onclick="generatePDF()">Gerar PDF</button>
+        <div class="section">
+            <h2>Experiências Profissionais</h2>
+            <div id="experience-section">
+                <div class="form-group">
+                    <label for="experience-1">Empresa e Cargo</label>
+                    <input type="text" class="form-control" id="experience-1" name="experience[]">
+                    <label for="experience-desc-1">Descrição das Atividades</label>
+                    <textarea class="form-control" id="experience-desc-1" name="experience-desc[]"></textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary add-button" onclick="addExperience()">Adicionar Experiência</button>
+        </div>
+
+        <button class="btn btn-success mt-3" onclick="generatePDF()">Gerar PDF</button>
+    </div>
 </body>
 </html>
