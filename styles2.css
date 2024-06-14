@@ -1,0 +1,30 @@
+body {
+    background-image: url('background.jpg');
+    background-size: cover; /* Garante que a imagem de fundo cubra toda a área */
+    background-repeat: no-repeat; /* Evita repetir a imagem */
+    background-position: center center; /* Centraliza a imagem de fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Utiliza toda a altura da viewport */
+    margin: 0; /* Remove margens padrão */
+    font-family: Arial, sans-serif; /* Define a família de fontes */
+}
+
+.container {
+    text-align: center;
+}
+.title {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+}
+.title h1 {
+    font-weight: bold;
+    color: #2c3e50; /* Cor azul marinho */
+    font-size: 36px; /* Tamanho da fonte do título */
+}
+.button-container {
+    margin-top: 20px;
+}
+.btn {
+    margin-right: 10px; /* Espaçamento entre botões */
+}
